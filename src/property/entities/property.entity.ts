@@ -11,7 +11,7 @@ export class Property {
   @Column()
   address: string;
 
-  @Column()
+  @Column('decimal')
   price: number;
 
   @Column()
