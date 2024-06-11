@@ -3,6 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { ClientModule } from './client/client.module';
 import { PropertyModule } from './property/property.module';
+import { User } from 'src/user/entities/user.entity';
+import { Client } from 'src/client/entities/client.entity';
+import { Property } from 'src/property/entities/property.entity';
 
 @Module({
   imports: [
@@ -14,7 +17,8 @@ import { PropertyModule } from './property/property.module';
       password: 'password',
       database: 'nest_project',
       autoLoadEntities: true,
-      synchronize: true,
+      entities: [User,Client, Property],
+      migrations: ['./database/migrations'],
     }),
     UserModule,
     ClientModule,

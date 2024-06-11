@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    networks:
+      - backend
+    ports:
+      - "3000:3000"
+
+  postgres:
+    image: postgres:16.3
+    environment:
+      POSTGRES_DB: nest_project
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+    ports:
+      - "5435:5432"
+
+networks:
+  backend:
+
+volumes:
+  postgres_data:

@@ -13,7 +13,7 @@ export class UserService {
   ) {}
 
  async create(createUserDto: CreateUserDto): Promise<User> {
-    this.validateRequiredFields(createUserDto, ['name', 'userName', 'email', 'password']);
+    this.validateRequiredFields(createUserDto, ['name', 'userName' , 'email', 'password']);
     const user = this.userRepository.create(createUserDto);
     return this.userRepository.save(user);
   }
@@ -22,9 +22,10 @@ export class UserService {
     const missingFields = requiredFields.filter(field => !dto[field]);
 
     if (missingFields.length > 0) {
-      throw new BadRequestException(
-        `Os seguintes campos são obrigatórios: ${missingFields.join(', ')}`,
-      );
+      throw new BadRequestException({
+        status: 'error',
+        message: `Os seguintes campos são obrigatórios: ${missingFields.join(', ')}`,
+      });
     }
   }
 

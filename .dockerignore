@@ -1,0 +1,20 @@
+# Ignore node modules and build outputs
+node_modules/
+dist/
+
+# Ignore logs and environment configs
+*.log
+*.env
+
+# Development specific files
+.idea/
+*.swp
+*.swo
+
+# Ignore Docker volumes and specific database scripts
+volumes/
+database/migrations/
+
+# Other non-essential files
+.DS_Store
+Thumbs.db
